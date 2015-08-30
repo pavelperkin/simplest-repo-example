@@ -1,0 +1,26 @@
+services:
+  ruby:
+    prepare:
+      - echo "prepare service 1"
+      - echo "prepare service 2"
+    from: 'ruby:2.2.3'
+
+staging:
+  prepare:
+    - echo "prepare victim"
+  service: ruby
+  folder: /app
+  port: 80
+  cmd: 'ruby -run -e httpd . -p $PORT'
+  env:
+    - RACK_ENV=production
+    - PORT=80
+
+tests:
+  prepare:
+    - npm install
+  service: ruby
+  folder: /app
+  cmd: 'for i in {1..100}; do printf "."; sleep 0.1; done; printf "\n";'
+  env:
+    - RACK_ENV=production
