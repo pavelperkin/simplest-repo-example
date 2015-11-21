@@ -11,7 +11,7 @@ staging:
   service: ruby
   folder: /app
   port: 80
-  cmd: 'ruby -run -e httpd . -p $PORT'
+  cmd: 'ruby -run -e httpd . -p 80'
   env:
     - RACK_ENV=production
     - PORT=80
