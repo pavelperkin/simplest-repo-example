@@ -8,6 +8,7 @@ services:
 staging:
   prepare:
     - echo "prepare victim"
+    - echo "prepare service again"
   service: ruby
   folder: /app
   port: 80
